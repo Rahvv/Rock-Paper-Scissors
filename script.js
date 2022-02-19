@@ -1,5 +1,6 @@
 let score = 0;
 let round = 0;
+let cScore = 0;
 const container = document.querySelector('#container');
 const rock = document.createElement('button');
 rock.setAttribute('id', 'rock')
@@ -44,25 +45,31 @@ function playRound(playerSelection, computerSelection) {
         roundResult.textContent = "You Win! Rock beats Scissors";
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "paper") {
         roundResult.textContent = "You Lose! Paper beats Rock";
+        cScore++;
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock") {
         score++;
         roundResult.textContent = "You Win! Paper beats Rock";
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors") {
         roundResult.textContent = "You Lose! Scissors beats Paper";
+        cScore++;
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper") {
         score++;
         roundResult.textContent = "You Win! Scissors beats Paper";
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "rock") {
         roundResult.textContent = "You Lose! Rock beats Scissors";
+        cScore++;
     } else {roundResult.textContent = "It's a tie!";
+        score++;
+        cScore++;
     };
-    finalScore.textContent = 'You\'re current score is: ' + score + ' out of ' + round;
-    if (round == 5) {
-        if (score >= 3) {
+    finalScore.textContent = 'You\'re score:' + score + 'Computer\'s score:' + cScore;
+    if (score == 5 || cScore == 5) {
+        if (score == 5) {
             alert('You Win!');
         } alert('You Lose :(');
         round = 0;
         score = 0;
+        cScore = 0;
     }
 }
 
